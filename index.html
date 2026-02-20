@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amelia Shop</title>
+  <meta name="description" content="Amelia Shop menghadirkan promo member baru di momen Imlek dengan tema Kalahkan Naga Legendaris." />
+  <meta name="keywords" content="amelia shop, imlek, promo member baru, login, daftar" />
+  <meta name="author" content="Amelia Shop" />
+
+  <style>
+    :root{
+      --yellow:#ffd400;
+      --green:#1db954;
+      --green2:#10b981;
+      --text:#0f172a;
+      --muted:#475569;
+      --line: rgba(15, 23, 42, .10);
+      --shadow: 0 18px 45px rgba(0,0,0,.18);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 15% 10%, rgba(255,212,0,.30), transparent 60%),
+        radial-gradient(900px 520px at 90% -10%, rgba(29,185,84,.25), transparent 55%),
+        linear-gradient(180deg, #f7fff1, #ffffff);
+      min-height:100vh;
+    }
+
+    .container{max-width:1100px; margin:0 auto; padding:22px}
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.06);
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      background: linear-gradient(135deg, var(--yellow), var(--green2));
+      box-shadow: 0 14px 25px rgba(29,185,84,.18);
+      border:1px solid rgba(255,255,255,.55);
+    }
+    .brand b{display:block; font-size:16px; letter-spacing:.2px}
+    .brand small{display:block; color:var(--muted); font-weight:600; margin-top:2px}
+
+    /* Hero */
+    .hero{
+      margin-top:18px;
+      border-radius: calc(var(--radius) + 6px);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(15,23,42,.08);
+      background:
+        radial-gradient(650px 420px at 20% 35%, rgba(255,212,0,.35), transparent 60%),
+        radial-gradient(650px 420px at 85% 10%, rgba(16,185,129,.30), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.70), rgba(255,255,255,.45));
+      backdrop-filter: blur(10px);
+    }
+
+    .heroInner{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:18px;
+      padding:28px;
+      align-items:stretch;
+    }
+
+    .heroText{
+      background: rgba(255,255,255,.60);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--radius);
+      padding:22px;
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      width:fit-content;
+      padding:8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      border:1px solid rgba(15,23,42,.08);
+      color: var(--muted);
+      font-weight:700;
+      font-size: 13px;
+    }
+
+    h1{
+      margin:12px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.12;
+      letter-spacing: -.4px;
+    }
+
+    .lead{
+      color:var(--muted);
+      line-height:1.7;
+      margin:0;
+      font-size: 15.5px;
+      max-width: 60ch;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+    .feat{
+      border-radius: 18px;
+      background: rgba(255,255,255,.68);
+      border:1px solid rgba(15,23,42,.08);
+      padding:14px;
+    }
+    .feat b{display:block; font-size:14px}
+    .feat span{display:block; color:var(--muted); font-size:13px; margin-top:4px; font-weight:600}
+
+    /* Hero image */
+    .heroMedia{
+      border-radius: var(--radius);
+      border:1px solid rgba(15,23,42,.08);
+      overflow:hidden;
+      background: rgba(255,255,255,.55);
+      display:flex;
+      flex-direction:column;
+    }
+    .mediaTop{flex:1; min-height: 260px}
+    .mediaTop img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .mediaBottom{
+      padding:14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      border-top:1px solid rgba(15,23,42,.08);
+    }
+    .mediaBottom small{
+      color:var(--muted);
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    /* Buttons under hero image */
+    .ctaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:none;
+      cursor:pointer;
+      font-weight:900;
+      padding:12px 14px;
+      border-radius: 14px;
+      transition: .18s ease;
+      width: 100%;
+      max-width: 200px;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btnLogin{
+      background: linear-gradient(135deg, var(--yellow), #ffb800);
+      box-shadow: 0 16px 26px rgba(255, 187, 0, .22);
+    }
+    .btnDaftar{
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color:#fff;
+      box-shadow: 0 16px 26px rgba(16, 185, 129, .18);
+    }
+
+    /* Article + sidebar */
+    .content{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:16px;
+      align-items:start;
+    }
+
+    .article{
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 35px rgba(0,0,0,.08);
+      padding:24px;
+    }
+    .article h2{
+      margin:0 0 10px;
+      font-size: 22px;
+      letter-spacing: -.2px;
+    }
+    .article p{
+      margin:0 0 12px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 15.5px;
+    }
+
+    .sideCard{
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 35px rgba(0,0,0,.08);
+      padding:18px;
+      position: sticky;
+      top: 96px;
+    }
+    .sideCard h3{margin:0 0 10px; font-size:16px}
+    .pill{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px;
+      border-radius: 18px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.62);
+      margin-top:10px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--yellow), var(--green2));
+      margin-top:6px;
+      flex:0 0 auto;
+    }
+    .pill b{display:block; font-size:14px}
+    .pill span{display:block; color:var(--muted); font-size:13px; margin-top:3px; font-weight:600}
+
+    .footer{
+      margin:18px 0 8px;
+      padding:14px 16px;
+      border-radius: 18px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.65);
+      color: var(--muted);
+      font-weight:800;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    @media (max-width: 980px){
+      .heroInner{grid-template-columns: 1fr; padding:20px}
+      .features{grid-template-columns: 1fr}
+      .content{grid-template-columns: 1fr}
+      .sideCard{position:static}
+      .topbar{position:static}
+      .btn{max-width: 100%;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Amelia Shop</b>
+          <small>Dapatkan Promo Member Baru!</small>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="heroInner">
+        <div class="heroMedia">
+          <div class="mediaTop">
+            <img src="https://supernova-66.github.io/rose/mahjongways-20-1-18.webp" alt="Hero Amelia Shop">
+          </div>
+
+          <div class="mediaBottom">
+            <small><b>Kalahkan Naga Legendaris</b> • Momen Imlek • Promo Member Baru</small>
+
+            <div class="ctaRow">
+              <!-- GANTI link sesuai kebutuhan -->
+              <button class="btn btnLogin" onclick="window.location.href='https://hokilink.net/LETNT'">Login</button>
+              <button class="btn btnDaftar" onclick="window.location.href='https://hokilink.net/LETNT'">Daftar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroText">
+          <div class="badge">🧧 Momen Imlek • 🐉 Naga Legendaris • 🎁 Promo Member Baru</div>
+
+          <h1>Kalahkan Naga Legendaris di Momen Imlek untuk Mendapatkan Promo Member Baru</h1>
+
+          <p class="lead">
+            Di momen Imlek yang identik dengan keberuntungan dan awal baru, Amelia Shop menghadirkan tema
+            <b>Kalahkan Naga Legendaris</b> sebagai simbol perjalanan menuju kesempatan yang lebih besar.
+            Kampanye ini mengajak pengunjung untuk memasuki pengalaman yang lebih personal melalui akses member,
+            dengan proses yang sederhana namun tetap terasa eksklusif.
+          </p>
+
+          <div class="features">
+            <div class="feat">
+              <b>Promo Member Baru</b>
+              <span>Benefit khusus bagi pengguna yang bergabung di periode Imlek.</span>
+            </div>
+
+            <div class="feat">
+              <b>Akses Lebih Cepat</b>
+              <span>Login dan daftar ringkas tanpa langkah membingungkan.</span>
+            </div>
+
+            <div class="feat">
+              <b>Momentum Spesial</b>
+              <span>Imlek jadi titik awal pengalaman baru di Amelia Shop.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <article class="article">
+        <h2>Kampanye Imlek Amelia Shop</h2>
+
+        <p>
+          Kampanye <b>Kalahkan Naga Legendaris</b> di Amelia Shop dirancang sebagai simbol perjalanan menuju
+          keberuntungan dan peluang baru di momen Imlek. Dalam budaya perayaan ini, naga melambangkan kekuatan,
+          transformasi, dan keberanian untuk memulai sesuatu yang lebih baik. Nilai tersebut diterjemahkan ke dalam
+          pengalaman digital yang mengajak pengunjung untuk menjadi bagian dari ekosistem Amelia Shop sebagai member.
+        </p>
+
+        <p>
+          Alih-alih menghadirkan halaman yang penuh distraksi, Amelia Shop menekankan kesederhanaan yang terarah.
+          Pengunjung langsung memahami konteks kampanye, melihat visual utama, lalu diberi pilihan yang jelas:
+          masuk sebagai member atau mendaftar untuk membuka akses baru. Pendekatan ini membuat perjalanan pengguna
+          terasa lebih natural dan tidak membingungkan.
+        </p>
+
+        <p>
+          Promo member baru yang disiapkan pada periode Imlek berfungsi sebagai bentuk sambutan sekaligus titik awal
+          untuk mengenal fitur yang tersedia. Promo tersebut bukan hanya sekadar insentif, tetapi juga bagian dari
+          pengalaman onboarding yang membuat pengguna merasa dihargai sejak awal interaksi.
+        </p>
+
+        <p>
+          Dengan memadukan visual naga legendaris, nuansa Imlek yang hangat, serta struktur halaman yang modern,
+          Amelia Shop menghadirkan landing page yang fokus pada satu tujuan utama: mengubah pengunjung menjadi member
+          dengan cara yang nyaman, cepat, dan tetap terasa eksklusif.
+        </p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Amelia Shop</div>
+      <div>Minimal • Modern • Kuning + Hijau</div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
